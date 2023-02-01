@@ -1,0 +1,6 @@
+ID client
+697448711407-c2cdsl6ft365iktoouhat0i2ma9ggf3m.apps.googleusercontent.com
+
+Code secret client
+rSO0DdyQFRdD-E6uBrlzDtvi
+

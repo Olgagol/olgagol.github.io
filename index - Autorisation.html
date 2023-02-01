@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Start Workout</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="css/myCss.css">
+        <link rel="stylesheet" href="css/menu.css">
+        <!--
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <script src="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/js/okta-sign-in.min.js" type="text/javascript"></script>
+        <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/css/okta-sign-in.min.css" type="text/css" rel="stylesheet"/>
+        <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/css/okta-theme.css" type="text/css" rel="stylesheet"/>
+        -->
+        <link rel="shortcut icon" href="favicon.ico">
+        <link rel="apple-touch-icon" sizes="57x57" href="apple-touch-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="apple-touch-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="apple-touch-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="apple-touch-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180x180.png">
+        <link rel="mask-icon" href="safari-pinned-tab.svg" color="#00а0ff">
+
+        <meta property="og:title" content="My Workout">
+        <meta property="og:image" content="android-chrome-512x512.png">
+
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <link rel="manifest" href="manifest.json">
+    </head>
+    <body data-value="#7bc9f7" style="background-color:#7bc9f7;font-family: Comic Sans MS, Comic Sans;font-size: xxx-large; ">
+<!--
+        <div class="container" id="userAutorisation" style="display: none;">
+            <h1 style="margin: 2em 0;">Autorisation</h1>
+            <div id="messageBox" class="jumbotron">
+                You are not logged in.
+            </div>
+            <div id="okta-login-container"></div>
+        </div>
+    -->
+        <div id="firstPage" class="mobile-container">
+            <nav role="navigation">
+                <div id="menuToggle">
+                  <input type="checkbox" />
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                <ul id="menu">
+                    <li>
+                        <div style="font-size: xxx-large;">Select a background color for this application  </div>
+                        <div id="divFavcolor" style="width: 90%;height: 90px;background-color: #B4FB99;margin-top: 30px;">
+                            <input type="color" id="favcolor" style="width: 90%;height: 90px;" value="#B4FB99" data-value="" onchange="backGroundColor(this)" /> 
+                        </div>
+                    </li>
+                    <!--<li><div style="font-size: xxx-large;" onclick="userAutorisationPage()"> My Account </div></li>-->
+                </ul>
+               </div>
+              </nav>            
+            <div style="text-align:center;">
+                <h1 >Add a new Workout</h1>
+                <!--
+                <hr />
+                <div style="font-size: xxx-large;">Select a background color for this application  </div>
+                <input class="primary_color" type="color" id="favcolor" name="favcolor" value="#B4FB99" data-value="" onchange="backGroundColor(this)" /> 
+                -->
+            </div>
+            <div style="text-align: right;bottom: 1%;right: 3%;position: fixed;"> 
+                <input type="image" src="img/IconPlus_BIG.png" alt="add Workout" width="25%" onclick="goToColorPage()" />
+                <br />
+            </div>
+        </div>
+
+        <div id="colorPage" style="display:none;margin: auto;">
+            <h1>Workout parametres</h1>
+
+            <hr />
+
+            <div style="font-size: xxx-large;">Select the number of colors</div> <!--On choisit le nombre de couleurs-->
+            <div class="dropdown-container">
+                <SELECT id="nbrColor" name="nom" size="1" onchange="nbrColor()" >
+                    <OPTION>1</OPTION>
+                    <OPTION>2</OPTION>
+                    <OPTION>3</OPTION>
+                    <OPTION>4</OPTION>
+                    <OPTION>5</OPTION>
+                    <OPTION>6</OPTION>
+                </SELECT>
+                <div class="select-icon">
+                    <svg focusable="false" viewBox="0 0 104 128" width="100%" height="100%" class="icon">
+                        <path d="m2e1 95a9 9 0 0 1 -9 9 9 9 0 0 1 -9 -9 9 9 0 0 1 9 -9 9 9 0 0 1 9 9zm0-3e1a9 9 0 0 1 -9 9 9 9 0 0 1 -9 -9 9 9 0 0 1 9 -9 9 9 0 0 1 9 9zm0-3e1a9 9 0 0 1 -9 9 9 9 0 0 1 -9 -9 9 9 0 0 1 9 -9 9 9 0 0 1 9 9zm14 55h68v1e1h-68zm0-3e1h68v1e1h-68zm0-3e1h68v1e1h-68z"></path>
+                    </svg>
+                </div>                
+            </div>
+            <table id="tabParamColor">
+                <tr>
+                    <td style="font-size: 110%;">Choose a color(s)</td>
+                </tr>
+                <tr>
+                    <td style="font-size: 110%;"><span style="vertical-align:super;">1. </span><input id="1color" class="primary_color" type="color" value="#FF0000" data-value="#FF0000" onchange="selectedColors(this)" /></td>
+                </tr>
+            </table>                              
+            <div style="text-align: right;bottom: 1%;right: 3%;position: fixed;"> 
+                <input type="image" src="img/maison.png" alt="go to home" width="25%" onclick="goToFirstPage()" />
+                <input type="image" src="img/vide.png" width="25%" />
+                <input type="image" src="img/fleche-bleu-droit.png" alt="add Workout" width="25%" onclick="goToParametresPage()" />
+                <br />
+            </div>                            
+        </div>        
+        
+        <div id="parametresPage" style="display:none;margin: auto;">
+            <h1>Workout parametres</h1>
+
+            <hr />
+            
+            <div style="font-size: xx-large;">
+                <span id="tempsMin"></span><span style="font-size: large;"> min   </span>
+                <span id="tempsSec"></span><span> sec / </span>
+                <span id="interval"></span><span> intervals  / </span>
+                <span id="sets"></span><span> sets</span>
+            </div>
+                
+            <hr />
+            
+            <!--On met les parametrages (temps de travail, etc)-->
+            <div class="choise">Prepare</div>
+            <div class="setChoise">
+                <input type="image" src="img/moins.png" alt="moins" width="10%" onclick="moinsZero(this)" />
+                <input id="inputPrepa" type="number" min="0" value="10" onchange="count()"> sec
+                <input type="image" src="img/plus.png" alt="plus" width="10%" onclick="plus(this)" />
+            </div>                                         
+            <hr />
+            <div class="choise">Work</div>
+            <div class="setChoise">
+                <input type="image" src="img/moins.png" alt="moins" width="10%" onclick="moins(this)" />
+                <input id="inputWork" type="number" min="0" value="15" onchange="count()"> sec
+                <input type="image" src="img/plus.png" alt="plus" width="10%" onclick="plus(this)" />
+            </div>        
+            <hr />
+            <div class="choise">Frequancy</div>
+            <div class="setChoise">
+                <input type="image" src="img/moins.png" alt="moins" width="10%" onclick="moins(this)" />
+                <input id="inputFreq" type="number" min="0" value="3"  onchange="count()"> sec
+                <input type="image" src="img/plus.png" alt="plus" width="10%" onclick="plus(this)" />
+            </div>                                         
+            
+            <div class="choise">Rest</div>
+            <div class="setChoise">
+                <input type="image" src="img/moins.png" alt="moins" width="10%" onclick="moinsZero(this)" />
+                <input id="inputRest" type="number" min="0" value="10"  onchange="count()"> sec
+                <input type="image" src="img/plus.png" alt="plus" width="10%" onclick="plus(this)" />
+            </div>                                         
+            <hr />
+            <div class="choise">Cycles</div>
+            <div class="setChoise">
+                <input type="image" src="img/moins.png" alt="moins" width="10%" onclick="moins(this)" />
+                <input id="inputCycles" type="number" min="0" value="3"  onchange="count()"> pcs
+                <input type="image" src="img/plus.png" alt="plus" width="10%" onclick="plus(this)" />
+            </div>                                         
+            <hr />
+            <div class="choise">Sets</div>
+            <div class="setChoise">
+                <input type="image" src="img/moins.png" alt="moins" width="10%" onclick="moins(this)" />
+                <input id="inputSets" type="number" min="0" value="5"  onchange="count()"> pcs
+                <input type="image" src="img/plus.png" alt="plus" width="10%" onclick="plus(this)" />
+            </div>        
+            <hr />
+            <div class="choise">Rest between Sets</div>
+            <div class="setChoise">
+                <input type="image" src="img/moins.png" alt="moins" width="10%" onclick="moinsZero(this)" />
+                <input id="inputRestSets" type="number" min="0" value="60"  onchange="count()"> sec
+                <input type="image" src="img/plus.png" alt="plus" width="10%" onclick="plus(this)" />
+            </div>        
+            <hr />
+            <div class="choise">Cool down</div>
+            <div class="setChoise">
+                <input type="image" src="img/moins.png" alt="moins" width="10%" onclick="moinsZero(this)" />
+                <input id="inputCoolDown" type="number" min="0" value="120"  onchange="count()"> sec
+                <input type="image" src="img/plus.png" alt="plus" width="10%" onclick="plus(this)" />
+            </div>               
+            
+            <br />
+
+            <div>
+                <input type="image" src="img/maison.png" alt="Start" width="15%" onclick="goToFirstPage()" />
+                <input type="image" src="img/IconStart.png" alt="Start" width="40%" onclick="start()" />
+                <input type="image" src="img/fleche-bleu-gauche.png" alt="Start" width="15%" onclick="goToColorPage()" />
+            </div>
+        </div>
+
+        <div id="workPage" style="height:100%;display: none;color:white;">        
+            <!--Il faudra faire de prepare une variable qui va changer en fonction du temps écoulé ( Prepare/Work/Rest/Rest between sets/Cool down-->
+            <div style="height:100%;text-align:center; opacity:0.6;">
+                <div id="actEnCours" style="font-size:250%; margin-top:20px; background-color:black"></div>
+                <div id="cycleSet" style="font-size:150%; background-color:black"></div>
+                <!--Ici j'ai mis le temps qui va s'écouler et qui va changer le "travail" (Prepare, Work, Rest, Rest between sets, Cool down) -->
+                <div id="countSecDesc" style="font-size:1500%; padding:25% 0;text-shadow: 2px 0 20px #000, -2px 0 20px #000, 0 2px 15px #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 10px #000, -1px 1px 4px #000;"></div>
+            </div>
+            <div style="width:98%;position:fixed;bottom:20%;background-color:black; opacity:0.4;font-size:150%">
+                <div id="tempTotal" style="width:100%;">
+                    <span id="tempsTotalMin"></span><span> min   </span>
+                    <span id="tempsTotalSec"></span><span> sec </span>
+                </div>
+            </div>
+            <div style="width:95%;position:fixed;bottom:3%;">
+                <input type="image" src="img/maison.png" alt="go to home" width="15%" onclick="goToFirstPage()" />
+                <input type="image" src="img/stop.png" alt="Stop" id="inputStopPlay" width="15%" onclick="stopPlay(this)" />
+                <input type="image" src="img/fleche-bleu-gauche.png" alt="Annuler" width="15%" onclick="annuler()" />
+            </div>            
+            <audio id="audioThreeTwoOne" src="audio/bipSonnerie.wav" >
+            <audio id="audioStart" src="audio/start.wav" >
+            <audio id="audioStop" src="audio/stop.wav" >
+            <audio id="audioWork" src="audio/siffle.mp3" >
+        </div>
+        <script src="js/myScript.js" type="text/javascript"></script>
+    </body>
+</html>
