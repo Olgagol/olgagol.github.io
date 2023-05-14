@@ -114,57 +114,63 @@
                 </div>
                 
                 <!--On met les parametrages (temps de travail, etc)-->
-                <div class="choise" style="margin-top: 15%;">Prepare</div>
-                <div class="setChoise">
+                <div class="choice" style="margin-top: 15%;">Prepare</div>
+                <div class="setChoice">
                     <input class="inputPrepaMoins" type="image" src="img/moins.png" alt="moins" width="10%" onclick="moinsZero(this)" />
                     <input class="inputPrepa" id="inputPrepa" type="number" min="0" value="10" onchange="count()"> sec
                     <input class="inputPrepaPlus" type="image" src="img/plus.png" alt="plus" width="10%" onclick="plus(this)" />
                 </div>                                         
                 <hr />
-                <div class="choise">Work</div>
-                <div class="setChoise">
+                <div class="choice">Work</div>
+                <div class="setChoice">
                     <input class="inputWorkMoins" type="image" src="img/moins.png" alt="moins" width="10%" onclick="moins(this)" />
                     <input class="inputWork" id="inputWork" type="number" min="0" value="15" onchange="count()"> sec
                     <input class="inputWorkPlus" type="image" src="img/plus.png" alt="plus" width="10%" onclick="plus(this)" />
                 </div>        
                 <hr />
-                <div class="choise">Frequancy</div>
-                <div class="setChoise">
+                <div class="choice">Frequency Min</div>
+                <div class="setChoice">
                     <input class="inputFreqMoins" type="image" src="img/moins.png" alt="moins" width="10%" onclick="moins(this)" />
-                    <input class="inputFreq" id="inputFreq" type="number" min="0" value="2"  onchange="count()"> sec
+                    <input class="inputFreqMin" id="inputFreqMin" type="number" min="0" value="2"  onchange="count()"> sec
                     <input class="inputFreqPlus" type="image" src="img/plus.png" alt="plus" width="10%" onclick="plus(this)" />
-                </div>                                         
+                </div>  
+                <div class="choice">Frequency Max</div>
+                <div class="setChoice">
+                    <input class="inputFreqMoins" type="image" src="img/moins.png" alt="moins" width="10%" onclick="moins(this)" />
+                    <input class="inputFreqMax" id="inputFreqMax" type="number" min="0" value="5"  onchange="count()"> sec
+                    <input class="inputFreqPlus" type="image" src="img/plus.png" alt="plus" width="10%" onclick="plus(this)" />
+                </div>                                                           
                 
-                <div class="choise">Rest</div>
-                <div class="setChoise">
+                <div class="choice">Rest</div>
+                <div class="setChoice">
                     <input class="inputRestMoins" type="image" src="img/moins.png" alt="moins" width="10%" onclick="moinsZero(this)" />
                     <input class="inputRest" id="inputRest" type="number" min="0" value="15"  onchange="count()"> sec
                     <input class="inputRestPlus" type="image" src="img/plus.png" alt="plus" width="10%" onclick="plus(this)" />
                 </div>                                         
                 <hr />
-                <div class="choise">Cycles</div>
-                <div class="setChoise">
+                <div class="choice">Cycles</div>
+                <div class="setChoice">
                     <input class="inputCyclesMoins" type="image" src="img/moins.png" alt="moins" width="10%" onclick="moins(this)" />
                     <input class="inputCycles" id="inputCycles" type="number" min="0" value="3"  onchange="count()"> pcs
                     <input class="inputCyclesPlus" type="image" src="img/plus.png" alt="plus" width="10%" onclick="plus(this)" />
                 </div>                                         
                 <hr />
-                <div class="choise">Sets</div>
-                <div class="setChoise">
+                <div class="choice">Sets</div>
+                <div class="setChoice">
                     <input class="inputSetsMoins" type="image" src="img/moins.png" alt="moins" width="10%" onclick="moins(this)" />
                     <input class="inputSets" id="inputSets" type="number" min="0" value="2"  onchange="count()"> pcs
                     <input class="inputSetsPlus" type="image" src="img/plus.png" alt="plus" width="10%" onclick="plus(this)" />
                 </div>        
                 <hr />
-                <div class="choise">Rest between Sets</div>
-                <div class="setChoise">
+                <div class="choice">Rest between Sets</div>
+                <div class="setChoice">
                     <input class="inputRestSetsMoins" type="image" src="img/moins.png" alt="moins" width="10%" onclick="moinsZero(this)" />
                     <input class="inputRestSets" id="inputRestSets" type="number" min="0" value="60"  onchange="count()"> sec
                     <input class="inputRestSetsPlus" type="image" src="img/plus.png" alt="plus" width="10%" onclick="plus(this)" />
                 </div>        
                 <hr />
-                <div class="choise">Cool down</div>
-                <div class="setChoise" style="margin-bottom: 15%;">
+                <div class="choice">Cool down</div>
+                <div class="setChoice" style="margin-bottom: 15%;">
                     <input class="inputCoolDownMoins" type="image" src="img/moins.png" alt="moins" width="10%" onclick="moinsZero(this)" />
                     <input class="inputCoolDown" id="inputCoolDown" type="number" min="0" value="0"  onchange="count()"> sec
                     <input class="inputCoolDownPlus" type="image" src="img/plus.png" alt="plus" width="10%" onclick="plus(this)" />
@@ -291,57 +297,62 @@
                 </div>                    
                 
                 <!--On met les parametrages (temps de travail, etc)-->
-                <div class="choise" style="margin-top: 8%;">Prepare</div>
-                <div class="setChoise" style="margin:0">
+                <div class="choice" style="margin-top: 8%;">Prepare</div>
+                <div class="setChoice" style="margin:0">
                     <input class="inputPrepaMoins" type="image" src="img/moins.png" alt="moins" width="6%" onclick="moinsZero(this)" />
                     <input class="inputPrepa" id-value="inputPrepa" type="number" min="0" value="10"style="font-size: x-large" onchange="count()"> sec
                     <input class="inputPrepaPlus" type="image" src="img/plus.png" alt="plus" width="6%" onclick="plus(this)" />
                 </div>                                         
                 <hr />
-                <div class="choise">Work</div>
-                <div class="setChoise" style="margin:0">
+                <div class="choice">Work</div>
+                <div class="setChoice" style="margin:0">
                     <input class="inputWorkMoins" type="image" src="img/moins.png" alt="moins" width="6%" onclick="moins(this)" />
                     <input class="inputWork" id-value="inputWork" type="number" min="0" value="15"style="font-size: x-large" onchange="count()"> sec
                     <input class="inputWorkPlus" type="image" src="img/plus.png" alt="plus" width="6%" onclick="plus(this)" />
                 </div>        
                 <hr />
-                <div class="choise">Frequancy</div>
-                <div class="setChoise" style="margin:0">
+                <div class="choice">Frequency Min</div>
+                <div class="setChoice" style="margin:0">
                     <input class="inputFreqMoins" type="image" src="img/moins.png" alt="moins" width="6%" onclick="moins(this)" />
-                    <input class="inputFreq" id-value="inputFreq" type="number" min="0" value="2" style="font-size: x-large" onchange="count()"> sec
+                    <input class="inputFreqMin" id-value="inputFreqMin" type="number" min="0" value="2" style="font-size: x-large" onchange="count()"> sec
                     <input class="inputFreqPlus" type="image" src="img/plus.png" alt="plus" width="6%" onclick="plus(this)" />
                 </div>                                         
-                
-                <div class="choise">Rest</div>
-                <div class="setChoise" style="margin:0">
+                <div class="choice">Frequency Max</div>
+                <div class="setChoice" style="margin:0">
+                    <input class="inputFreqMoins" type="image" src="img/moins.png" alt="moins" width="6%" onclick="moins(this)" />
+                    <input class="inputFreqMax" id-value="inputFreqMax" type="number" min="0" value="5" style="font-size: x-large" onchange="count()"> sec
+                    <input class="inputFreqPlus" type="image" src="img/plus.png" alt="plus" width="6%" onclick="plus(this)" />
+                </div>                
+                <div class="choice">Rest</div>
+                <div class="setChoice" style="margin:0">
                     <input class="inputRestMoins" type="image" src="img/moins.png" alt="moins" width="6%" onclick="moinsZero(this)" />
                     <input class="inputRest" id-value="inputRest" type="number" min="0" value="15" style="font-size: x-large" onchange="count()"> sec
                     <input class="inputRestPlus" type="image" src="img/plus.png" alt="plus" width="6%" onclick="plus(this)" />
                 </div>                                         
                 <hr />
-                <div class="choise">Cycles</div>
-                <div class="setChoise" style="margin:0">
+                <div class="choice">Cycles</div>
+                <div class="setChoice" style="margin:0">
                     <input class="inputCyclesMoins" type="image" src="img/moins.png" alt="moins" width="6%" onclick="moins(this)" />
                     <input class="inputCycles" id-value="inputCycles" type="number" min="0" value="3" style="font-size: x-large" onchange="count()"> pcs
                     <input class="inputCyclesPlus" type="image" src="img/plus.png" alt="plus" width="6%" onclick="plus(this)" />
                 </div>                                         
                 <hr />
-                <div class="choise">Sets</div>
-                <div class="setChoise" style="margin:0">
+                <div class="choice">Sets</div>
+                <div class="setChoice" style="margin:0">
                     <input class="inputSetsMoins" type="image" src="img/moins.png" alt="moins" width="6%" onclick="moins(this)" />
                     <input class="inputSets" id-value="inputSets" type="number" min="0" value="2" style="font-size: x-large" onchange="count()"> pcs
                     <input class="inputSetsPlus" type="image" src="img/plus.png" alt="plus" width="6%" onclick="plus(this)" />
                 </div>        
                 <hr />
-                <div class="choise">Rest between Sets</div>
-                <div class="setChoise" style="margin:0">
+                <div class="choice">Rest between Sets</div>
+                <div class="setChoice" style="margin:0">
                     <input class="inputRestSetsMoins" type="image" src="img/moins.png" alt="moins" width="6%" onclick="moinsZero(this)" />
                     <input class="inputRestSets" id-value="inputRestSets" type="number" min="0" value="60" style="font-size: x-large" onchange="count()"> sec
                     <input class="inputRestSetsPlus" type="image" src="img/plus.png" alt="plus" width="6%" onclick="plus(this)" />
                 </div>        
                 <hr />
-                <div class="choise">Cool down</div>
-                <div class="setChoise" style="margin-bottom: 11%;">
+                <div class="choice">Cool down</div>
+                <div class="setChoice" style="margin-bottom: 11%;">
                     <input class="inputCoolDownMoins" type="image" src="img/moins.png" alt="moins" width="6%" onclick="moinsZero(this)" />
                     <input class="inputCoolDown" id-value="inputCoolDown" type="number" min="0" value="0" style="font-size: x-large" onchange="count()"> sec
                     <input class="inputCoolDownPlus" type="image" src="img/plus.png" alt="plus" width="6%" onclick="plus(this)" />

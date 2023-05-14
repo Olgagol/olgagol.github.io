@@ -312,9 +312,12 @@ function count(){
     var inputWork = parseInt(document.getElementById("inputWork").value);
     document.getElementsByClassName("inputWork")[0].setAttribute("data-value",inputWork);
     document.getElementsByClassName("inputWork")[1].setAttribute("data-value",inputWork);
-    var inputFreq = document.getElementById("inputFreq").value;
-    document.getElementsByClassName("inputFreq")[0].setAttribute("data-value",inputFreq);
-    document.getElementsByClassName("inputFreq")[1].setAttribute("data-value",inputFreq);
+    var inputFreqMin = document.getElementById("inputFreqMin").value;
+    document.getElementsByClassName("inputFreqMin")[0].setAttribute("data-value",inputFreqMin);
+    document.getElementsByClassName("inputFreqMin")[1].setAttribute("data-value",inputFreqMin);
+    var inputFreqMax = document.getElementById("inputFreqMax").value;
+    document.getElementsByClassName("inputFreqMax")[0].setAttribute("data-value",inputFreqMax);
+    document.getElementsByClassName("inputFreqMax")[1].setAttribute("data-value",inputFreqMax);
     var inputRest = parseInt(document.getElementById("inputRest").value);
     document.getElementsByClassName("inputRest")[0].setAttribute("data-value",inputRest);
     document.getElementsByClassName("inputRest")[1].setAttribute("data-value",inputRest);
@@ -368,46 +371,57 @@ function count(){
         
 var taille = 0;
 
-var countDesc = 0;
-var countColor = 0;
+var countDescending = 0;
+var multipleOfFreq = 0;
 var timerCount;
 var timer_is_on = 0;
 
 var index = 0;
 var indexColor = 0;
 var indexSet = 1;
-
+var freqRandom;
+var reStart;
+var countInteger;
 function timedCount() {
-    if(countDesc != 0){
-
+    countInteger = isInt(countDescending) ? countDescending : countInteger;
+    if(countDescending != 0){
         if(document.getElementsByClassName("actEnCours")[0].innerHTML == "Work" || document.getElementsByClassName("actEnCours")[1].innerHTML == "Work"){
-            if((countColor%freq == 0 && countDesc != countColor*freq) || freq == 1){
+            if((reStart - freqRandom) == countDescending || reStart == countDescending){
+                reStart = countDescending;
+                freqRandom = randomFrequency(parseFloat(document.getElementById("inputFreqMin").getAttribute('data-value')), parseFloat(document.getElementById("inputFreqMax").getAttribute('data-value')));
                 playSound("audioWork"); 
                 document.getElementsByTagName("body")[0].style.backgroundColor = "#ffffff";
                 setTimeout(function(){
                     colorRandom = arrayColorsRandom[Math.floor(Math.random() * arrayColorsRandom.length)];
                     document.getElementsByTagName("body")[0].style.backgroundColor = colorRandom;
                 }, 100);
-            if(indexColor < nbrColors)
-                indexColor++;
+                if(indexColor < nbrColors)
+                    indexColor++;
             }
         }else{
             document.getElementsByTagName("body")[0].style.backgroundColor = document.getElementsByTagName("body")[0].getAttribute("data-value");
         }
-        countColor --;
+        //multipleOfFreq --;
 
 
-        if(document.getElementsByClassName("actEnCours")[0].innerHTML != "Work" && countDesc < 4 || document.getElementsByClassName("actEnCours")[1].innerHTML != "Work" && countDesc < 4)
+        if(parseInt(document.getElementsByClassName("countSecDesc")[0].innerHTML) != countInteger &&
+            (document.getElementsByClassName("actEnCours")[0].innerHTML != "Work" && countDescending < 4 
+            || document.getElementsByClassName("actEnCours")[1].innerHTML != "Work" && countDescending < 4)
+        ){
             playSound("audioThreeTwoOne");             
+        }
 
-        document.getElementsByClassName("countSecDesc")[0].innerHTML = countDesc;
+        if(parseInt(document.getElementsByClassName("countSecDesc")[0].innerHTML) != countInteger)
+            timedTotalCount();
+
+        document.getElementsByClassName("countSecDesc")[0].innerHTML = countInteger;
         document.getElementsByClassName("countSecDesc")[0].style.fontSize = "1500%";
-        document.getElementsByClassName("countSecDesc")[1].innerHTML = countDesc;
+        document.getElementsByClassName("countSecDesc")[1].innerHTML = countInteger;
         document.getElementsByClassName("countSecDesc")[1].style.padding = "";
         document.getElementsByClassName("countSecDesc")[1].style.fontSize = "1300%";
-        countDesc --;
-        timedTotalCount();
-        timerCount = setTimeout(timedCount, 1000);
+        countDescending = countDescending-0.5;
+
+        timerCount = setTimeout(timedCount, 500);
     }else{
         
     /*  
@@ -433,6 +447,10 @@ function timedCount() {
     }
 }
 
+function isInt(n){
+    return Number(n) === n && n % 1 === 0;
+}
+
 function timedTotalCount() {
     if(sec != 0){
         document.getElementsByClassName("tempsTotalMin")[0].innerHTML = min;
@@ -449,13 +467,24 @@ function timedTotalCount() {
     }
 }
 
+function randomFrequency(min, max){
+   // var min = min == null ? 1 : min; 
+   // var max = max == null ? 4 : max;
+
+    var valueRandom = Math.random() * (max - min) + min;
+    //arrondissement jusqu'à 0.5
+    valueRandom = Math.round(valueRandom / 0.5) * 0.5;
+
+    return valueRandom;
+}
+
 var cycles, sets, freq, nbrColors;
 var nCycle = 0;
 function start(){
 
     cycles = parseInt(document.getElementById("inputCycles").getAttribute('data-value'));
     sets = parseInt(document.getElementById("inputSets").getAttribute('data-value'));
-    freq = parseFloat(document.getElementById("inputFreq").getAttribute('data-value'));
+    freqRandom = randomFrequency(parseFloat(document.getElementById("inputFreqMin").getAttribute('data-value')), parseFloat(document.getElementById("inputFreqMax").getAttribute('data-value')));
     nbrColors = document.getElementById("nbrColor").getAttribute("data-value");      
 
     //var arrayColorsRandom = [];
@@ -529,8 +558,10 @@ function startCount(start) {
     document.getElementById("workPage").style.display = "block";
     //document.getElementById("userAutorisation").style.display = "none";
 
-    countDesc = start;
-    countColor = start*freq;
+    reStart = parseFloat(start);
+    countInteger = reStart; //valeur entière de départ qui va descendre caque 1
+    countDescending = reStart; //valeur de départ qui va décendre chaque 0.5
+    multipleOfFreq = reStart*freq; //pour savoir le multiple (кратное) de freq
     if (!timer_is_on) {
         timer_is_on = 1;
         timedCount();
@@ -543,7 +574,7 @@ function stopCount() {
     index = 0;
     nCycle = 0;
     indexSet = 1;
-    countDesc = 0;
+    countDescending = 0;
     pauseAudio();
 }
 
