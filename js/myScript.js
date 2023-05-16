@@ -290,15 +290,19 @@ function nbrColor(){
 
 //fonction qui memorise la couleur selectionnée dans "data-value"
 function selectedColors(input){
-    localStorage.setItem(input.id, input.value);
+    var id = input.id != "" ? input.id : input.getAttribute("id-value");
+    localStorage.setItem(id, input.value);
    // input.setAttribute("data-value",input.value);
 
-    if(portraitOrientation.matches){
+    /*if(portraitOrientation.matches){
         //document.getElementsByClassName(input.id)[1].setAttribute("data-value",input.value);
         document.getElementsByClassName(input.id)[1].value = localStorage.getItem(input.id);
     }else{
         //document.getElementsByClassName(input.id)[0].setAttribute("data-value",input.value);
         document.getElementsByClassName(input.id)[0].value = localStorage.getItem(input.id);
+    }*/
+    for(var i = 0; i < 2; i++){
+        document.getElementsByClassName(id)[i].value = localStorage.getItem(id);
     }
    
 }
