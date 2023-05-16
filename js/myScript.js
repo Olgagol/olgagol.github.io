@@ -1,3 +1,4 @@
+var body = document.getElementsByTagName("body")[0];
 var divs = document.getElementsByTagName("div");
 var inputs = document.getElementsByTagName("input");
 var spans = document.getElementsByTagName("span");
@@ -5,10 +6,54 @@ var uls = document.getElementsByTagName("ul");
 var selects = document.getElementsByTagName("select");
 var tables = document.getElementsByTagName("table");
 var arrayTags = [divs,inputs,spans,uls,selects,tables];
-
 var portraitOrientation = window.matchMedia("(orientation:portrait)"); 
-
 var classPrimaryColor = document.getElementsByClassName("primary_color");
+
+//valeurs par défaut
+localStorage.setItem("bodyColor", localStorage.getItem("bodyColor") != null ? localStorage.getItem("bodyColor") : "#B4FB99");
+
+localStorage.setItem("nbrColor", localStorage.getItem("nbrColor") != null ? localStorage.getItem("nbrColor") : "1");
+
+localStorage.setItem("1color", localStorage.getItem("1color") != null ? localStorage.getItem("1color") : "#FF0000");
+localStorage.setItem("2color", localStorage.getItem("2color") != null ? localStorage.getItem("2color") : "#FFFF00");
+localStorage.setItem("3color", localStorage.getItem("3color") != null ? localStorage.getItem("3color") : "#0000FF");
+localStorage.setItem("4color", localStorage.getItem("4color") != null ? localStorage.getItem("4color") : "#00FF00");
+localStorage.setItem("5color", localStorage.getItem("5color") != null ? localStorage.getItem("5color") : "#00FFDD");
+localStorage.setItem("6color", localStorage.getItem("6color") != null ? localStorage.getItem("6color") : "#FF00DD");
+
+localStorage.setItem("inputPrepa", localStorage.getItem("inputPrepa") != null ? localStorage.getItem("inputPrepa") : "10");
+localStorage.setItem("inputWork", localStorage.getItem("inputWork") != null ? localStorage.getItem("inputWork") : "15");
+localStorage.setItem("inputFreqMin", localStorage.getItem("inputFreqMin") != null ? localStorage.getItem("inputFreqMin") : "2");
+localStorage.setItem("inputFreqMax", localStorage.getItem("inputFreqMax") != null ? localStorage.getItem("inputFreqMax") : "5");
+localStorage.setItem("inputRest", localStorage.getItem("inputRest") != null ? localStorage.getItem("inputRest") : "15");
+localStorage.setItem("inputCycles", localStorage.getItem("inputCycles") != null ? localStorage.getItem("inputCycles") : "3");
+localStorage.setItem("inputSets", localStorage.getItem("inputSets") != null ? localStorage.getItem("inputSets") : "2");
+localStorage.setItem("inputRestSets", localStorage.getItem("inputRestSets") != null ? localStorage.getItem("inputRestSets") : "60");
+localStorage.setItem("inputCoolDown", localStorage.getItem("inputCoolDown") != null ? localStorage.getItem("inputCoolDown") : "0");
+
+
+
+body.style.backgroundColor = localStorage.getItem("bodyColor");
+//pour 2 affichages (portrait et paysage)
+for(var i = 0; i < 2; i++){
+    document.getElementsByClassName("divFavcolor")[i].style.backgroundColor = localStorage.getItem("bodyColor");
+
+    document.getElementsByClassName("nbrColor")[i].value = localStorage.getItem("nbrColor");
+
+    document.getElementsByClassName("1color")[i].value = localStorage.getItem("1color");
+
+    document.getElementsByClassName("inputPrepa")[i].value = localStorage.getItem("inputPrepa");
+    document.getElementsByClassName("inputWork")[i].value = localStorage.getItem("inputWork");
+    document.getElementsByClassName("inputFreqMin")[i].value = localStorage.getItem("inputFreqMin");
+    document.getElementsByClassName("inputFreqMax")[i].value = localStorage.getItem("inputFreqMax");
+    document.getElementsByClassName("inputRest")[i].value = localStorage.getItem("inputRest");
+    document.getElementsByClassName("inputCycles")[i].value = localStorage.getItem("inputCycles");
+    document.getElementsByClassName("inputSets")[i].value = localStorage.getItem("inputSets");
+    document.getElementsByClassName("inputRestSets")[i].value = localStorage.getItem("inputRestSets");
+    document.getElementsByClassName("inputCoolDown")[i].value = localStorage.getItem("inputCoolDown");
+}
+nbrColor();
+
 
 if(!portraitOrientation.matches) {
     // si on est en paysage en demarrage, alors on supprime des Id en mode portrait et les ajout en mode paysage. par défaut les Id son en mode Portrait
@@ -88,6 +133,7 @@ function isPage(orient1, orient2){
     }
 }
 
+/*
 function dataValueIntoValue(orient){
     var inputDataValue = document.getElementsByTagName("input");
     for(var i = 0; i < inputDataValue.length/2; i++){
@@ -104,7 +150,7 @@ function dataValueIntoValue(orient){
         }
     }
 }
-
+*/
 //fonction pour lancer l'audio
 function playSound(soundObj) { 
     var sound = document.getElementById(soundObj); 
@@ -123,13 +169,15 @@ function pauseAudio() {
     }
 }
 
-var colorRandom = document.getElementsByTagName("body")[0].getAttribute("data-value");
+
+var colorRandom = localStorage.getItem("bodyColor") != null ? localStorage.getItem("bodyColor") : localStorage.setItem("bodyColor", "#B4FB99");
 
 //change de couleur de body avec la valeur d'input sur la 1ere page
 function backGroundColor(input){
-    document.getElementsByTagName("body")[0].style.backgroundColor = input.value;
+    body.style.backgroundColor = input.value;
     document.getElementById("divFavcolor").style.backgroundColor = input.value;
-    document.getElementsByTagName("body")[0].setAttribute("data-value", input.value);  
+   // body.setAttribute("data-value", input.value);  
+    localStorage.setItem("bodyColor", input.value);
     colorRandom = input.value;
 }  
  
@@ -144,7 +192,8 @@ function goToFirstPage(){
     stopCount();
     document.getElementsByClassName("inputStopPlay")[0].setAttribute("src","img/stop.png");
     document.getElementsByClassName("inputStopPlay")[1].setAttribute("src","img/stop.png");
-    document.getElementsByTagName("body")[0].style.backgroundColor = document.getElementsByTagName("body")[0].getAttribute("data-value");
+   // body.style.backgroundColor = body.getAttribute("data-value");
+    body.style.backgroundColor = localStorage.getItem("bodyColor");
 }
 //bouton Plus sur la premiere page
 function goToColorPage(){
@@ -165,11 +214,12 @@ function goToParametresPage(){
 }
 
 // ajout data-value dans getElementById("nbrColor")
-document.getElementById("nbrColor").setAttribute("data-value",document.getElementById("nbrColor").value);
+//document.getElementById("nbrColor").setAttribute("data-value",document.getElementById("nbrColor").value);
+localStorage.setItem("nbrColor", document.getElementById("nbrColor").value);
 //  Cette fonction ajoute autant de <tr> dans la table avec id="tabParamColor" qu'on a choisi dans le <SELECT>
-var arrayColors = ["#FFFF00","#0000FF","#00FF00","#00FFDD","#FF00DD"];
 
 function nbrColor(){
+    var arrayColors = [localStorage.getItem("2color"),localStorage.getItem("3color"),localStorage.getItem("4color"),localStorage.getItem("5color"),localStorage.getItem("6color")];
 
     // on supprime tous les Rows sauf deux premières
     if(portraitOrientation.matches){
@@ -184,7 +234,8 @@ function nbrColor(){
         document.getElementsByClassName("tabParamColor")[1].deleteRow(2);
     } 
     var nbrColor = document.getElementById("nbrColor").value;
-    document.getElementById("nbrColor").setAttribute("data-value",nbrColor);
+   // document.getElementById("nbrColor").setAttribute("data-value",nbrColor);
+    localStorage.setItem("nbrColor", document.getElementById("nbrColor").value);
 
 
     for(var orient = 0; orient < 2; orient++){
@@ -228,7 +279,8 @@ function nbrColor(){
             }
 
             input.value = arrayColors[i];
-            input.setAttribute("data-value", arrayColors[i]);
+            localStorage.setItem(input.id, arrayColors[i]);
+           // input.setAttribute("data-value", arrayColors[i]);
             input.setAttribute("onchange","selectedColors(this)");
 
             cell.appendChild(input);
@@ -238,14 +290,15 @@ function nbrColor(){
 
 //fonction qui memorise la couleur selectionnée dans "data-value"
 function selectedColors(input){
-    input.setAttribute("data-value",input.value);
+    localStorage.setItem(input.id, input.value);
+   // input.setAttribute("data-value",input.value);
 
     if(portraitOrientation.matches){
-        document.getElementsByClassName(input.id)[1].setAttribute("data-value",input.value);
-        document.getElementsByClassName(input.id)[1].value = input.value;
+        //document.getElementsByClassName(input.id)[1].setAttribute("data-value",input.value);
+        document.getElementsByClassName(input.id)[1].value = localStorage.getItem(input.id);
     }else{
-        document.getElementsByClassName(input.id)[0].setAttribute("data-value",input.value);
-        document.getElementsByClassName(input.id)[0].value = input.value;
+        //document.getElementsByClassName(input.id)[0].setAttribute("data-value",input.value);
+        document.getElementsByClassName(input.id)[0].value = localStorage.getItem(input.id);
     }
    
 }
@@ -254,48 +307,25 @@ function selectedColors(input){
 count();
 
 //on ajoute le nombre -1 dans input
-function moinsZero(input){
-    var nbr = parseInt(input.nextSibling.nextSibling.value);
-    input.nextSibling.nextSibling.value = nbr - 1;
-
-    document.getElementsByClassName(input.className)[0].nextSibling.nextSibling.setAttribute("data-value",input.nextSibling.nextSibling.value);
-    document.getElementsByClassName(input.className)[0].nextSibling.nextSibling.value = input.nextSibling.nextSibling.value;
-
-    document.getElementsByClassName(input.className)[1].nextSibling.nextSibling.setAttribute("data-value",input.nextSibling.nextSibling.value);
-    document.getElementsByClassName(input.className)[1].nextSibling.nextSibling.value = input.nextSibling.nextSibling.value;
-
-    count();
-}
-
-//on ajoute le nombre -1 dans input
-function moins(input){
-    var nbr = parseInt(input.nextSibling.nextSibling.value);
-    if(nbr > 1){
-        input.nextSibling.nextSibling.value = nbr - 1;
-
-        document.getElementsByClassName(input.className)[0].nextSibling.nextSibling.setAttribute("data-value",input.nextSibling.nextSibling.value);
-        document.getElementsByClassName(input.className)[0].nextSibling.nextSibling.value = input.nextSibling.nextSibling.value;
+function changeValue(input, isPlus, isAcceptZero){
+    var inputValue = isPlus ? input.previousSibling.previousSibling : input.nextSibling.nextSibling;
     
-        document.getElementsByClassName(input.className)[1].nextSibling.nextSibling.setAttribute("data-value",input.nextSibling.nextSibling.value);
-        document.getElementsByClassName(input.className)[1].nextSibling.nextSibling.value = input.nextSibling.nextSibling.value;
+    if(isPlus)
+        inputValue.value ++;
+    else if(parseInt(inputValue.value) > 1 || (isAcceptZero && parseInt(inputValue.value) == 1))
+        inputValue.value --;
 
-    }
+    //on mémorise la nouvelle valeur dans localStorage
+    localStorage.setItem(inputValue.className, inputValue.value);
 
+    //on met à jour la nouvelle valeur dans 2 affichages
+    var inputValueVert = isPlus ? document.getElementsByClassName(input.className)[0].previousSibling.previousSibling : document.getElementsByClassName(input.className)[0].nextSibling.nextSibling;
+    var inputValueHoriz = isPlus ? document.getElementsByClassName(input.className)[1].previousSibling.previousSibling : document.getElementsByClassName(input.className)[1].nextSibling.nextSibling;
+    inputValueVert.value = localStorage.getItem(inputValue.className);
+    inputValueHoriz.value = localStorage.getItem(inputValue.className);
     count();
 }
 
-//on ajoute le nombre +1 dans input
-function plus(input){
-    input.previousSibling.previousSibling.value = parseInt(input.previousSibling.previousSibling.value) + 1;
-    
-    document.getElementsByClassName(input.className)[0].previousSibling.previousSibling.setAttribute("data-value",input.previousSibling.previousSibling.value);
-    document.getElementsByClassName(input.className)[0].previousSibling.previousSibling.value = input.previousSibling.previousSibling.value;
-
-    document.getElementsByClassName(input.className)[1].previousSibling.previousSibling.setAttribute("data-value",input.previousSibling.previousSibling.value);
-    document.getElementsByClassName(input.className)[1].previousSibling.previousSibling.value = input.previousSibling.previousSibling.value;
-
-    count();
-}
 
 var min;
 var sec;
@@ -303,36 +333,53 @@ var resultatTempsMin;
 var resultatTempsSec;
 var arrayColorsRandom = [];
  
-// la fonction qui refait les calcul a chaque change;ent dans input
+// la fonction qui refait les calcul a chaque changement dans input
 function count(){   
     // je recupere les valeurs de chaque input     
     var inputPrepa = parseInt(document.getElementById("inputPrepa").value);
-    document.getElementsByClassName("inputPrepa")[0].setAttribute("data-value",inputPrepa);
-    document.getElementsByClassName("inputPrepa")[1].setAttribute("data-value",inputPrepa);
+    localStorage.setItem("inputPrepa", inputPrepa);
+   // document.getElementsByClassName("inputPrepa")[0].setAttribute("data-value",inputPrepa);
+   // document.getElementsByClassName("inputPrepa")[1].setAttribute("data-value",inputPrepa);
+
     var inputWork = parseInt(document.getElementById("inputWork").value);
-    document.getElementsByClassName("inputWork")[0].setAttribute("data-value",inputWork);
-    document.getElementsByClassName("inputWork")[1].setAttribute("data-value",inputWork);
+    localStorage.setItem("inputWork", inputWork);
+   // document.getElementsByClassName("inputWork")[0].setAttribute("data-value",inputWork);
+   // document.getElementsByClassName("inputWork")[1].setAttribute("data-value",inputWork);
+
     var inputFreqMin = document.getElementById("inputFreqMin").value;
-    document.getElementsByClassName("inputFreqMin")[0].setAttribute("data-value",inputFreqMin);
-    document.getElementsByClassName("inputFreqMin")[1].setAttribute("data-value",inputFreqMin);
+    localStorage.setItem("inputFreqMin", inputFreqMin);
+   // document.getElementsByClassName("inputFreqMin")[0].setAttribute("data-value",inputFreqMin);
+   // document.getElementsByClassName("inputFreqMin")[1].setAttribute("data-value",inputFreqMin);
+
     var inputFreqMax = document.getElementById("inputFreqMax").value;
-    document.getElementsByClassName("inputFreqMax")[0].setAttribute("data-value",inputFreqMax);
-    document.getElementsByClassName("inputFreqMax")[1].setAttribute("data-value",inputFreqMax);
+    localStorage.setItem("inputFreqMax", inputFreqMax);
+  //  document.getElementsByClassName("inputFreqMax")[0].setAttribute("data-value",inputFreqMax);
+   // document.getElementsByClassName("inputFreqMax")[1].setAttribute("data-value",inputFreqMax);
+
     var inputRest = parseInt(document.getElementById("inputRest").value);
-    document.getElementsByClassName("inputRest")[0].setAttribute("data-value",inputRest);
-    document.getElementsByClassName("inputRest")[1].setAttribute("data-value",inputRest);
+    localStorage.setItem("inputRest", inputRest);
+   // document.getElementsByClassName("inputRest")[0].setAttribute("data-value",inputRest);
+   // document.getElementsByClassName("inputRest")[1].setAttribute("data-value",inputRest);
+
     var inputCycles = parseInt(document.getElementById("inputCycles").value);
-    document.getElementsByClassName("inputCycles")[0].setAttribute("data-value",inputCycles);
-    document.getElementsByClassName("inputCycles")[1].setAttribute("data-value",inputCycles);
+    localStorage.setItem("inputCycles", inputCycles);
+   // document.getElementsByClassName("inputCycles")[0].setAttribute("data-value",inputCycles);
+  //  document.getElementsByClassName("inputCycles")[1].setAttribute("data-value",inputCycles);
+
     var inputSets = parseInt(document.getElementById("inputSets").value);
-    document.getElementsByClassName("inputSets")[0].setAttribute("data-value",inputSets);
-    document.getElementsByClassName("inputSets")[1].setAttribute("data-value",inputSets);
+    localStorage.setItem("inputSets", inputSets);
+  //  document.getElementsByClassName("inputSets")[0].setAttribute("data-value",inputSets);
+  //  document.getElementsByClassName("inputSets")[1].setAttribute("data-value",inputSets);
+
     var inputRestSets = parseInt(document.getElementById("inputRestSets").value);
-    document.getElementsByClassName("inputRestSets")[0].setAttribute("data-value",inputRestSets);
-    document.getElementsByClassName("inputRestSets")[1].setAttribute("data-value",inputRestSets);
+    localStorage.setItem("inputRestSets", inputRestSets);
+   // document.getElementsByClassName("inputRestSets")[0].setAttribute("data-value",inputRestSets);
+  //  document.getElementsByClassName("inputRestSets")[1].setAttribute("data-value",inputRestSets);
+
     var inputCoolDown = parseInt(document.getElementById("inputCoolDown").value);
-    document.getElementsByClassName("inputCoolDown")[0].setAttribute("data-value",inputCoolDown);
-    document.getElementsByClassName("inputCoolDown")[1].setAttribute("data-value",inputCoolDown);
+    localStorage.setItem("inputCoolDown", inputCoolDown);
+  //  document.getElementsByClassName("inputCoolDown")[0].setAttribute("data-value",inputCoolDown);
+  //  document.getElementsByClassName("inputCoolDown")[1].setAttribute("data-value",inputCoolDown);
 
     //je calcul le temps en min, mais j'obtiens le decimal
     var resultatTemps = (inputPrepa + (((inputWork + inputRest) * inputCycles) - inputRest + inputRestSets) * inputSets - inputRestSets  + inputCoolDown)/60;
@@ -347,24 +394,16 @@ function count(){
     // ???
     var resultatIntervals = inputSets * 2 * inputCycles;
     
-    // je mets mes resultats dans les spam
-    document.getElementsByClassName("tempsSec")[0].innerHTML = resultatTempsSec;
-    document.getElementsByClassName("tempsSec")[1].innerHTML = resultatTempsSec;
-
-    document.getElementsByClassName("tempsMin")[0].innerHTML = resultatTempsMin;
-    document.getElementsByClassName("tempsMin")[1].innerHTML = resultatTempsMin;
-
-    document.getElementsByClassName("interval")[0].innerHTML = resultatIntervals;
-    document.getElementsByClassName("interval")[1].innerHTML = resultatIntervals;
-
-    document.getElementsByClassName("sets")[0].innerHTML = inputSets;     
-    document.getElementsByClassName("sets")[1].innerHTML = inputSets;     
-
-    document.getElementsByClassName("tempsTotalMin")[0].innerHTML = resultatTempsMin;
-    document.getElementsByClassName("tempsTotalMin")[1].innerHTML = resultatTempsMin;
-    min = resultatTempsMin;
-    document.getElementsByClassName("tempsTotalSec")[0].innerHTML = resultatTempsSec;
-    document.getElementsByClassName("tempsTotalSec")[1].innerHTML = resultatTempsSec;
+    // je mets mes resultats dans les spam pour 2 affichages
+    for(var i = 0; i < 2; i++){
+        document.getElementsByClassName("tempsSec")[i].innerHTML = resultatTempsSec;    
+        document.getElementsByClassName("tempsMin")[i].innerHTML = resultatTempsMin;    
+        document.getElementsByClassName("interval")[i].innerHTML = resultatIntervals;    
+        document.getElementsByClassName("sets")[i].innerHTML = inputSets;    
+        document.getElementsByClassName("tempsTotalMin")[i].innerHTML = resultatTempsMin;
+        min = resultatTempsMin;
+        document.getElementsByClassName("tempsTotalSec")[i].innerHTML = resultatTempsSec;
+    }
     sec = resultatTempsSec;
 }
 
@@ -388,18 +427,19 @@ function timedCount() {
         if(document.getElementsByClassName("actEnCours")[0].innerHTML == "Work" || document.getElementsByClassName("actEnCours")[1].innerHTML == "Work"){
             if((reStart - freqRandom) == countDescending || reStart == countDescending){
                 reStart = countDescending;
-                freqRandom = randomFrequency(parseFloat(document.getElementById("inputFreqMin").getAttribute('data-value')), parseFloat(document.getElementById("inputFreqMax").getAttribute('data-value')));
+                freqRandom = randomFrequency(parseFloat(localStorage.getItem("inputFreqMin")), parseFloat(localStorage.getItem("inputFreqMax")));
                 playSound("audioWork"); 
-                document.getElementsByTagName("body")[0].style.backgroundColor = "#ffffff";
+                body.style.backgroundColor = "#ffffff";
                 setTimeout(function(){
                     colorRandom = arrayColorsRandom[Math.floor(Math.random() * arrayColorsRandom.length)];
-                    document.getElementsByTagName("body")[0].style.backgroundColor = colorRandom;
+                    body.style.backgroundColor = colorRandom;
                 }, 100);
                 if(indexColor < nbrColors)
                     indexColor++;
             }
         }else{
-            document.getElementsByTagName("body")[0].style.backgroundColor = document.getElementsByTagName("body")[0].getAttribute("data-value");
+           // body.style.backgroundColor = body.getAttribute("data-value");
+            body.style.backgroundColor = localStorage.getItem("bodyColor");
         }
         //multipleOfFreq --;
 
@@ -482,20 +522,22 @@ var cycles, sets, freq, nbrColors;
 var nCycle = 0;
 function start(){
 
-    cycles = parseInt(document.getElementById("inputCycles").getAttribute('data-value'));
-    sets = parseInt(document.getElementById("inputSets").getAttribute('data-value'));
-    freqRandom = randomFrequency(parseFloat(document.getElementById("inputFreqMin").getAttribute('data-value')), parseFloat(document.getElementById("inputFreqMax").getAttribute('data-value')));
-    nbrColors = document.getElementById("nbrColor").getAttribute("data-value");      
+    cycles = parseInt(localStorage.getItem("inputCycles")); //parseInt(document.getElementById("inputCycles").getAttribute('data-value'));
+    sets = parseInt(localStorage.getItem("inputSets")); // parseInt(document.getElementById("inputSets").getAttribute('data-value'));
+    freqRandom = randomFrequency(parseFloat(localStorage.getItem("inputFreqMin")), parseFloat(localStorage.getItem("inputFreqMax")));
+    nbrColors = parseInt(localStorage.getItem("nbrColor")); // document.getElementById("nbrColor").getAttribute("data-value");      
 
     //var arrayColorsRandom = [];
     for(var i=1; i <= nbrColors; i++){
-        arrayColorsRandom.push(document.getElementById(i+"color").getAttribute("data-value"));
+      //  arrayColorsRandom.push(document.getElementById(i+"color").getAttribute("data-value"));
+        arrayColorsRandom.push(localStorage.getItem(i+"color"));
     }
 
     if(index == 0){
         document.getElementsByClassName("actEnCours")[0].innerHTML = "Prepare";       
         document.getElementsByClassName("actEnCours")[1].innerHTML = "Prepare";       
-        startCount(document.getElementById('inputPrepa').getAttribute('data-value')); 
+        //startCount(document.getElementById('inputPrepa').getAttribute('data-value')); 
+        startCount(localStorage.getItem("inputPrepa"));
         document.getElementById("cycle").style.padding = "0";
         document.getElementById("set").style.padding = "0";
     // si index est un nombre impair et moins ou égal à nbr cycles
@@ -509,8 +551,9 @@ function start(){
         document.getElementById("set").innerHTML = " " + indexSet + " set ";         
         document.getElementById("set").style.padding = "3% 0";        
         playSound("audioWork"); 
-        document.getElementsByTagName("body")[0].style.backgroundColor = arrayColorsRandom[Math.floor(Math.random() * arrayColorsRandom.length)];
-        startCount(document.getElementById('inputWork').getAttribute('data-value')); 
+        body.style.backgroundColor = arrayColorsRandom[Math.floor(Math.random() * arrayColorsRandom.length)];
+        //startCount(document.getElementById('inputWork').getAttribute('data-value')); 
+        startCount(localStorage.getItem("inputWork"));
     // si index est un nombre pair et moins de nbr cycles
     }else if(index%2 == 0 && indexSet <= sets){
         if(nCycle < cycles){
@@ -521,11 +564,13 @@ function start(){
             document.getElementById("cycle").style.padding = "3% 0";
             document.getElementById("set").innerHTML = " " + indexSet + " set ";
             document.getElementById("set").style.padding = "3% 0";
-            startCount(document.getElementById('inputRest').getAttribute('data-value'));
+            //startCount(document.getElementById('inputRest').getAttribute('data-value'));
+            startCount(localStorage.getItem("inputRest"));
         }else if(indexSet < sets){
             document.getElementsByClassName("actEnCours")[0].innerHTML = "Rest between Sets";
             document.getElementsByClassName("actEnCours")[1].innerHTML = "Rest between Sets";
-            startCount(document.getElementById('inputRestSets').getAttribute('data-value'));
+           // startCount(document.getElementById('inputRestSets').getAttribute('data-value'));
+            startCount(localStorage.getItem("inputRestSets"));
             indexSet ++;
             index = 0;
             nCycle = 0;
@@ -534,14 +579,16 @@ function start(){
             document.getElementsByClassName("actEnCours")[0].innerHTML = "Cool down";
             document.getElementsByClassName("actEnCours")[1].innerHTML = "Cool down";
             indexSet ++;
-            startCount(document.getElementById('inputCoolDown').getAttribute('data-value'));
+           // startCount(document.getElementById('inputCoolDown').getAttribute('data-value'));
+            startCount(localStorage.getItem("inputCoolDown"));
         }
     }else{
         console.log("index "+ index);
         console.log("indexSet "+ indexSet);
         console.log("sets "+ sets);
         stopCount();
-        document.getElementsByTagName("body")[0].style.backgroundColor = document.getElementsByTagName("body")[0].getAttribute("data-value");
+        //  body.style.backgroundColor = body.getAttribute("data-value");
+        body.style.backgroundColor = localStorage.getItem("bodyColor");
         document.getElementsByClassName("countSecDesc")[0].style.fontSize = "500%";
         document.getElementsByClassName("countSecDesc")[1].style.fontSize = "500%";
         document.getElementsByClassName("countSecDesc")[1].style.padding = "25% 0";
@@ -602,7 +649,8 @@ function stopPlay() {
         document.getElementsByClassName("inputStopPlay")[0].setAttribute("src","img/stop.png");
         document.getElementsByClassName("inputStopPlay")[1].setAttribute("src","img/stop.png");
     }
-    document.getElementsByTagName("body")[0].style.backgroundColor = document.getElementsByTagName("body")[0].getAttribute("data-value");
+   // body.style.backgroundColor = body.getAttribute("data-value");
+   body.style.backgroundColor = localStorage.getItem("bodyColor");
 }
 function annuler(){
     document.getElementsByClassName("actEnCours")[0].innerHTML = "Prepare";
@@ -623,5 +671,6 @@ function annuler(){
     stopCount();
     document.getElementsByClassName("inputStopPlay")[0].setAttribute("src","img/stop.png");
     document.getElementsByClassName("inputStopPlay")[1].setAttribute("src","img/stop.png");
-    document.getElementsByTagName("body")[0].style.backgroundColor = document.getElementsByTagName("body")[0].getAttribute("data-value");
+   // body.style.backgroundColor = body.getAttribute("data-value");
+    body.style.backgroundColor = localStorage.getItem("bodyColor");
 }
