@@ -312,8 +312,7 @@ count();
 
 //on ajoute le nombre -1 dans input
 function changeValue(input, isPlus, isAcceptZero){
-    var inputValue = isPlus ? input.previousSibling.previousSibling : input.nextSibling.nextSibling;
-    
+    var inputValue = input.parentElement.querySelector('input[type="number"]');
     if(isPlus)
         inputValue.value ++;
     else if(parseInt(inputValue.value) > 1 || (isAcceptZero && parseInt(inputValue.value) == 1))
@@ -323,10 +322,10 @@ function changeValue(input, isPlus, isAcceptZero){
     localStorage.setItem(inputValue.className, inputValue.value);
 
     //on met à jour la nouvelle valeur dans 2 affichages
-    var inputValueVert = isPlus ? document.getElementsByClassName(input.className)[0].previousSibling.previousSibling : document.getElementsByClassName(input.className)[0].nextSibling.nextSibling;
-    var inputValueHoriz = isPlus ? document.getElementsByClassName(input.className)[1].previousSibling.previousSibling : document.getElementsByClassName(input.className)[1].nextSibling.nextSibling;
-    inputValueVert.value = localStorage.getItem(inputValue.className);
-    inputValueHoriz.value = localStorage.getItem(inputValue.className);
+    for(var i=0; i<2; i++){
+        var inputValueAffichage = document.getElementsByClassName(inputValue.className)[i].parentElement.querySelector('input[type="number"]');
+        inputValueAffichage.value = localStorage.getItem(inputValue.className);
+    }
     count();
 }
 
@@ -350,12 +349,12 @@ function count(){
    // document.getElementsByClassName("inputWork")[0].setAttribute("data-value",inputWork);
    // document.getElementsByClassName("inputWork")[1].setAttribute("data-value",inputWork);
 
-    var inputFreqMin = document.getElementById("inputFreqMin").value;
+    var inputFreqMin = parseFloat(document.getElementById("inputFreqMin").value);
     localStorage.setItem("inputFreqMin", inputFreqMin);
    // document.getElementsByClassName("inputFreqMin")[0].setAttribute("data-value",inputFreqMin);
    // document.getElementsByClassName("inputFreqMin")[1].setAttribute("data-value",inputFreqMin);
 
-    var inputFreqMax = document.getElementById("inputFreqMax").value;
+    var inputFreqMax =  parseFloat(document.getElementById("inputFreqMax").value);
     localStorage.setItem("inputFreqMax", inputFreqMax);
   //  document.getElementsByClassName("inputFreqMax")[0].setAttribute("data-value",inputFreqMax);
    // document.getElementsByClassName("inputFreqMax")[1].setAttribute("data-value",inputFreqMax);
