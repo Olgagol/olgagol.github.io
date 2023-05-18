@@ -279,7 +279,7 @@ function nbrColor(){
             }
 
             input.value = arrayColors[i];
-            localStorage.setItem(input.id, arrayColors[i]);
+            localStorage.setItem(input.id != "" ? input.id : input.getAttribute("id-value"), arrayColors[i]);
            // input.setAttribute("data-value", arrayColors[i]);
             input.setAttribute("onchange","selectedColors(this)");
 
