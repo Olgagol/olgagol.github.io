@@ -37,6 +37,7 @@ body.style.backgroundColor = localStorage.getItem("bodyColor");
 //pour 2 affichages (portrait et paysage)
 for(var i = 0; i < 2; i++){
     document.getElementsByClassName("divFavcolor")[i].style.backgroundColor = localStorage.getItem("bodyColor");
+    document.getElementsByClassName("favcolor")[i].value = localStorage.getItem("bodyColor");
 
     document.getElementsByClassName("nbrColor")[i].value = localStorage.getItem("nbrColor");
 
